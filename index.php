@@ -7,13 +7,12 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Met Hoteli, srećni i veseli">
     <meta name="author" content="Velibor Bacujkov 2493">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <title>MetHotels</title>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <link href="jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
 </head>
-
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -24,16 +23,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">MetHotels</a>
+                <a class="navbar-brand" href="index.php">MetHotels</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="rezervacija.html">Rezervišite sobu</a></li>
+                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="rezervacija.php">Rezervišite sobu</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="register.html">Registracija</a></li>
-                    <li><a href="login.html">Ulogujte se</a></li>
+                    <?php
+                    session_start();
+                    if(isset($_SESSION['username'])){
+                        echo "<li><a href='#'>" . $_SESSION['username'] . "</a></li>
+                              <li><a href='php/logout_script.php'>Izlogujte se</a></li>";
+                    }
+                    else {
+                        echo "<li><a href='register.php'>Registracija</a></li>
+                              <li><a href='login.php'>Ulogujte se</a></li>";
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -43,7 +51,7 @@
             <h1>MetHotels</h1>
             <h2>Obiđite svet uz hotele Met!</h2>
             <p>
-                <a class="btn btn-lg btn-primary" href="rezervacija.html" role="button" style="margin-top: 30px">Rezervišite sobu &raquo;</a>
+                <a class="btn btn-lg btn-primary" href="rezervacija.php" role="button" style="margin-top: 30px">Rezervišite sobu &raquo;</a>
             </p>
             <p>Iskoristite neverovatne first-minute popuste od čak 10%.</p>
         </div>
@@ -66,9 +74,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="http://getbootstrap.com/assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
