@@ -9,15 +9,79 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
+var home_component_1 = require('./home.component');
+var rezervacija_component_1 = require('./rezervacija.component');
+var register_component_1 = require("./register.component");
+var login_component_1 = require("./login.component");
+var dashboard_component_1 = require('./dashboard.component');
+var heroes_component_1 = require('./heroes.component');
+var hero_detail_component_1 = require('./hero-detail.component');
+var hero_service_1 = require('./hero.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(router) {
+        var _this = this;
+        this.router = router;
+        router.subscribe(function (val) {
+            console.log(localStorage.getItem('token'));
+            _this.token = localStorage.getItem('token');
+            _this.isAuth = _this.token != null;
+        });
     }
+    AppComponent.prototype.onLogout = function () {
+        this.token = null;
+        localStorage.removeItem('token');
+        this.router.parent.navigate(['./Home']);
+    };
     AppComponent = __decorate([
         core_1.Component({
-            selector: 'app-title',
-            template: '<p>Iskoristite neverovatne first-minute popuste od čak 10%.</p>'
-        }), 
-        __metadata('design:paramtypes', [])
+            selector: 'my-app',
+            templateUrl: 'html/app.component.html',
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES],
+            providers: [
+                router_deprecated_1.ROUTER_PROVIDERS,
+                hero_service_1.HeroService
+            ]
+        }),
+        router_deprecated_1.RouteConfig([
+            {
+                path: '/',
+                name: 'Home',
+                component: home_component_1.HomeComponent,
+                useAsDefault: true
+            },
+            {
+                path: '/rezervacija',
+                name: 'Rezervacija',
+                component: rezervacija_component_1.RezervacijaComponent
+            },
+            {
+                path: '/register',
+                name: 'Register',
+                component: register_component_1.RegisterComponent
+            },
+            {
+                path: '/login',
+                name: 'Login',
+                component: login_component_1.LoginComponent
+            },
+            {
+                path: '/dashboard',
+                name: 'Dashboard',
+                component: dashboard_component_1.DashboardComponent
+            },
+            {
+                path: '/detail/:id',
+                name: 'HeroDetail',
+                component: hero_detail_component_1.HeroDetailComponent
+            },
+            {
+                path: '/heroes',
+                name: 'Heroes',
+                component: heroes_component_1.HeroesComponent
+            }
+        ]), 
+        __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], AppComponent);
     return AppComponent;
 }());

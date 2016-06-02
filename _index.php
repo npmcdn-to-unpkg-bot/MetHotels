@@ -14,16 +14,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="css/jumbotron-narrow.css" rel="stylesheet">
-    <!-- Polyfill(s) for older browsers -->
-    <script src="node_modules/core-js/client/shim.min.js"></script>
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <!-- 2. Configure SystemJS -->
-    <script src="systemjs.config.js"></script>
-    <script>
-        System.import('app').catch(function(err){ console.error(err); });
-    </script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -65,7 +55,7 @@
             <p>
                 <a class="btn btn-lg btn-primary" href="rezervacija.php" role="button" style="margin-top: 30px">Rezervišite sobu &raquo;</a>
             </p>
-            <app-title>AngularJS2 Loading...</app-title>
+            <p>Iskoristite neverovatne first-minute popuste od čak 10%.</p>
         </div>
         <div class="row">
             <div class="col-md-6">
