@@ -10,16 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
+var http_1 = require('@angular/http');
+require('rxjs/Rx');
 var RezervacijaComponent = (function () {
-    function RezervacijaComponent(router) {
+    function RezervacijaComponent(http, router) {
+        this.http = http;
         this.router = router;
     }
+    RezervacijaComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        this.http.post('http://localhost/MetHotels/php/get_rooms_service.php', "", { headers: headers })
+            .map(function (res) { return res; })
+            .subscribe(function (data) { return _this.postResponse = data; }, function (err) {
+            var obj = JSON.parse(err._body);
+            console.log(obj);
+            document.getElementById("alert").innerHTML = obj;
+        }, function () {
+            console.log(_this.postResponse);
+            _this.rooms = JSON.parse(_this.postResponse._body);
+        });
+    };
     RezervacijaComponent = __decorate([
         core_1.Component({
             selector: 'my-rezervacija',
             templateUrl: 'html/rezervacija.component.html'
         }), 
-        __metadata('design:paramtypes', [router_deprecated_1.Router])
+        __metadata('design:paramtypes', [http_1.Http, router_deprecated_1.Router])
     ], RezervacijaComponent);
     return RezervacijaComponent;
 }());

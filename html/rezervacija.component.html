@@ -15,9 +15,25 @@
             <input type="text" class="form-control" id="contact" placeholder="Unesite kontakt telefon">
         </div>
         <h3>Rezervacija:</h3>
-        <div class="checkbox">
-            <label><input type="checkbox">Prihvatam uslove kupovine.</label>
-        </div>
+        <div id="alert"></div>
+        <table id="rooms" cellspacing="0">
+            <thead>
+            <tr>
+                <th>Ime sobe</th>
+                <th>Broj kreveta</th>
+                <th>Veličina (m2)</th>
+                <th>Izbor</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="#room of rooms">
+                <th>{{room.name}}</th>
+                <th>{{room.beds}}</th>
+                <th>{{room.size}}</th>
+                <th width="20px"><input type="radio" name="selecter_room" value="{{room.id}}"><br></th>
+            </tr>
+            </tbody>
+        </table>
         <button type="submit" class="btn btn-default">Rezerviši</button>
     </form>
 </div>
