@@ -65,7 +65,7 @@
             <p>
                 <a class="btn btn-lg btn-primary" href="rezervacija.php" role="button" style="margin-top: 30px">Rezervišite sobu &raquo;</a>
             </p>
-            <p>Iskoristite neverovatne first-minute popuste od čak 10%.</p>
+            <app-title>AngularJS2 Loading...</app-title>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -83,7 +83,6 @@
             </div>
         </div>
     </div>
-    <my-app>velja</my-app>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

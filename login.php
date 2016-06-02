@@ -57,7 +57,6 @@ if(isset($_SESSION['username'])){
     <div class="row">
         <h2>Log in:</h2>
         <form action="php/login_script.php" method="post" role="form">
-            <h3>Lični podaci:</h3>
             <div class="form-group">
                 <label for="username">Korisničko ime:</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Unesite korisničko ime">
