@@ -27,13 +27,16 @@ export class RezervacijaComponent implements OnInit {
             .subscribe(x => data = x,
                 err => {
                     var obj = JSON.parse(err._body);
-                    console.log(obj);
                     document.getElementById("alert").innerHTML = obj;
                 },
                 () => {
-                    console.log(data);
                     this.rooms = JSON.parse(data._body);
                 }
             );
+    }
+
+    editRoom(id: Number) {
+        let link = ['EditRoom', { id: id }];
+        this.router.navigate(link);
     }
 }

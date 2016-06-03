@@ -26,12 +26,14 @@ var RezervacijaComponent = (function () {
             .map(function (res) { return res; })
             .subscribe(function (x) { return data = x; }, function (err) {
             var obj = JSON.parse(err._body);
-            console.log(obj);
             document.getElementById("alert").innerHTML = obj;
         }, function () {
-            console.log(data);
             _this.rooms = JSON.parse(data._body);
         });
+    };
+    RezervacijaComponent.prototype.editRoom = function (id) {
+        var link = ['EditRoom', { id: id }];
+        this.router.navigate(link);
     };
     RezervacijaComponent = __decorate([
         core_1.Component({

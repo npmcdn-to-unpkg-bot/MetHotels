@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!isAuth" [class.active]="router.isRouteActive(router.generate(['Register']))" ng-class="getClass('/register')"><a [routerLink]="['Register']">Registracija</a></li>
                 <li *ngIf="!isAuth" [class.active]="router.isRouteActive(router.generate(['Login']))" ng-class="getClass('/login')"><a [routerLink]="['Login']">Ulogujte se</a></li>
-                <li *ngIf="isAuth"><a>{{token}}</a></li>
+                <li *ngIf="isAuth"><a style="color: #337ab7;">{{token}}</a></li>
                 <li *ngIf="isAuth" (click)="onLogout()"><a href="#">Izlogujte se</a></li>
             </ul>
         </div>

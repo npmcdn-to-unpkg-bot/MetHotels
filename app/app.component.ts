@@ -5,19 +5,15 @@ import {HomeComponent} from './home.component';
 import {RezervacijaComponent} from './rezervacija.component';
 import {RegisterComponent} from "./register.component";
 import {LoginComponent} from "./login.component";
-import {DashboardComponent} from './dashboard.component';
-import {HeroesComponent} from './heroes.component';
-import {HeroDetailComponent} from './hero-detail.component';
-import {HeroService} from './hero.service';
 import {AddRoomComponent} from "./add_room.component";
+import {EditRoomComponent} from "./edit_room.component";
 
 @Component({
     selector: 'my-app',
     templateUrl: 'html/app.component.html',
     directives: [ROUTER_DIRECTIVES],
     providers: [
-        ROUTER_PROVIDERS,
-        HeroService
+        ROUTER_PROVIDERS
     ]
 })
 @RouteConfig([
@@ -48,19 +44,9 @@ import {AddRoomComponent} from "./add_room.component";
         component: AddRoomComponent
     },
     {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: DashboardComponent
-    },
-    {
-        path: '/detail/:id',
-        name: 'HeroDetail',
-        component: HeroDetailComponent
-    },
-    {
-        path: '/heroes',
-        name: 'Heroes',
-        component: HeroesComponent
+        path: '/edit_room/:id',
+        name: 'EditRoom',
+        component: EditRoomComponent
     }
 ])
 export class AppComponent {

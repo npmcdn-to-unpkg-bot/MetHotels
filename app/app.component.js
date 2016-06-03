@@ -14,11 +14,8 @@ var home_component_1 = require('./home.component');
 var rezervacija_component_1 = require('./rezervacija.component');
 var register_component_1 = require("./register.component");
 var login_component_1 = require("./login.component");
-var dashboard_component_1 = require('./dashboard.component');
-var heroes_component_1 = require('./heroes.component');
-var hero_detail_component_1 = require('./hero-detail.component');
-var hero_service_1 = require('./hero.service');
 var add_room_component_1 = require("./add_room.component");
+var edit_room_component_1 = require("./edit_room.component");
 var AppComponent = (function () {
     function AppComponent(router) {
         var _this = this;
@@ -40,8 +37,7 @@ var AppComponent = (function () {
             templateUrl: 'html/app.component.html',
             directives: [router_deprecated_1.ROUTER_DIRECTIVES],
             providers: [
-                router_deprecated_1.ROUTER_PROVIDERS,
-                hero_service_1.HeroService
+                router_deprecated_1.ROUTER_PROVIDERS
             ]
         }),
         router_deprecated_1.RouteConfig([
@@ -72,19 +68,9 @@ var AppComponent = (function () {
                 component: add_room_component_1.AddRoomComponent
             },
             {
-                path: '/dashboard',
-                name: 'Dashboard',
-                component: dashboard_component_1.DashboardComponent
-            },
-            {
-                path: '/detail/:id',
-                name: 'HeroDetail',
-                component: hero_detail_component_1.HeroDetailComponent
-            },
-            {
-                path: '/heroes',
-                name: 'Heroes',
-                component: heroes_component_1.HeroesComponent
+                path: '/edit_room/:id',
+                name: 'EditRoom',
+                component: edit_room_component_1.EditRoomComponent
             }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])

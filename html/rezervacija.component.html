@@ -19,18 +19,20 @@
         <table id="rooms" cellspacing="0">
             <thead>
             <tr>
-                <th>Ime sobe</th>
+                <th width="20px">Izbor</th>
+                <th>Velja sobe</th>
                 <th>Broj kreveta</th>
                 <th>Veličina (m2)</th>
-                <th>Izbor</th>
+                <th width="20px"></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="#room of rooms">
+                <th><input type="radio" name="selected_room" value="{{room.id}}"><br></th>
                 <th>{{room.name}}</th>
                 <th>{{room.beds}}</th>
                 <th>{{room.size}}</th>
-                <th width="20px"><input type="radio" name="selecter_room" value="{{room.id}}"><br></th>
+                <th><input type="button" value="Izmeni" (click)="editRoom(room.id)"><br></th>
             </tr>
             </tbody>
         </table>

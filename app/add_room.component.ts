@@ -28,21 +28,18 @@ export class AddRoomComponent {
     }
 
     onAdd(): void {
+        var data;
         var postdata = "name=" + this.addRoomForm.value.name + "&beds=" + this.addRoomForm.value.beds + "&size=" + this.addRoomForm.value.size;
-        console.log(postdata);
         var headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        var data;
         this.http.post('http://localhost/MetHotels/php/add_room_service.php', postdata, { headers: headers })
             .map(res => res)
             .subscribe(x => data = x,
                 err => {
                     var obj = JSON.parse(err._body);
-                    console.log(obj);
                     document.getElementById("alert").innerHTML = "Error " + err._code + "<br>" + obj;
                 },
                 () => {
-                    console.log(data);
                     var obj = JSON.parse(data._body);
                     document.getElementById("alert").innerHTML = "Soba dodata:<br>[" + obj.id + "] " + obj.name + " (" + obj.beds + ", " + obj.size + " m2)";
                 }

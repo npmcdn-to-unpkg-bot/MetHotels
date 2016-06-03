@@ -29,20 +29,18 @@ export class LoginComponent {
     }
 
     onLogin(): void {
+        var data;
         var postdata = "username=" + this.loginForm.value.username + "&password=" + this.loginForm.value.password;
         var headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        var data;
         this.http.post('http://localhost/MetHotels/php/login_service.php', postdata, { headers: headers })
             .map(res => res)
             .subscribe(x => data = x,
                 err => {
                     var obj = JSON.parse(err._body);
-                    console.log(obj);
                     document.getElementById("alert").innerHTML = obj;
                 },
                 () => {
-                    console.log(data);
                     var obj = JSON.parse(data._body);
                     localStorage.setItem('token', obj.username);
                     this.router.parent.navigate(['./Home']);

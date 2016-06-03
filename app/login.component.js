@@ -27,18 +27,16 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.onLogin = function () {
         var _this = this;
+        var data;
         var postdata = "username=" + this.loginForm.value.username + "&password=" + this.loginForm.value.password;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        var data;
         this.http.post('http://localhost/MetHotels/php/login_service.php', postdata, { headers: headers })
             .map(function (res) { return res; })
             .subscribe(function (x) { return data = x; }, function (err) {
             var obj = JSON.parse(err._body);
-            console.log(obj);
             document.getElementById("alert").innerHTML = obj;
         }, function () {
-            console.log(data);
             var obj = JSON.parse(data._body);
             localStorage.setItem('token', obj.username);
             _this.router.parent.navigate(['./Home']);
