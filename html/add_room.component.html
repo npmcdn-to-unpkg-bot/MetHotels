@@ -1,0 +1,24 @@
+<div *ngIf="!isAuth" class="row">
+    <p>
+        Morate da se ulogujete da biste mogli da dodate sobu.
+    </p>
+</div>
+<div *ngIf="isAuth" class="row">
+    <h2>Dodaj sobu:</h2>
+    <form action="php/add_room_script.php" method="post" role="form" [ngFormModel]="addRoomForm">
+        <div class="form-group">
+            <label for="name">Ime sobe:</label>
+            <input type="text" class="form-control" id="name" name="name"  ngControl='name' placeholder="Unesite ime sobe">
+        </div>
+        <div class="form-group">
+            <label for="beds">Broj kreveta:</label>
+            <input type="number" class="form-control" id="beds" name="beds"  ngControl='beds' placeholder="Unesite broj kreveta">
+        </div>
+        <div class="form-group">
+            <label for="size">Veličina sobe (m2):</label>
+            <input type="number" class="form-control" id="size" name="size"  ngControl='size' placeholder="Unesite veličinu sobe (m2)">
+        </div>
+        <button (click)="onAdd()" type="submit" class="btn btn-default">Dodaj sobu</button>
+        <div id="alert"></div>
+    </form>
+</div>

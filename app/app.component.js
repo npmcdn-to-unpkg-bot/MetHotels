@@ -18,6 +18,7 @@ var dashboard_component_1 = require('./dashboard.component');
 var heroes_component_1 = require('./heroes.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var hero_service_1 = require('./hero.service');
+var add_room_component_1 = require("./add_room.component");
 var AppComponent = (function () {
     function AppComponent(router) {
         var _this = this;
@@ -64,6 +65,11 @@ var AppComponent = (function () {
                 path: '/login',
                 name: 'Login',
                 component: login_component_1.LoginComponent
+            },
+            {
+                path: '/add_room',
+                name: 'AddRoom',
+                component: add_room_component_1.AddRoomComponent
             },
             {
                 path: '/dashboard',

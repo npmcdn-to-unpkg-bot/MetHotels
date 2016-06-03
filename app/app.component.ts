@@ -9,6 +9,7 @@ import {DashboardComponent} from './dashboard.component';
 import {HeroesComponent} from './heroes.component';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroService} from './hero.service';
+import {AddRoomComponent} from "./add_room.component";
 
 @Component({
     selector: 'my-app',
@@ -40,6 +41,11 @@ import {HeroService} from './hero.service';
         path: '/login',
         name: 'Login',
         component: LoginComponent
+    },
+    {
+        path: '/add_room',
+        name: 'AddRoom',
+        component: AddRoomComponent
     },
     {
         path: '/dashboard',

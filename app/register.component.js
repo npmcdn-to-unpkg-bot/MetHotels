@@ -28,19 +28,20 @@ var RegisterComponent = (function () {
     }
     RegisterComponent.prototype.onRegister = function () {
         var _this = this;
-        var data = "username=" + this.registerForm.value.username + "&email=" + this.registerForm.value.email + "&password=" + this.registerForm.value.password;
+        var postdata = "username=" + this.registerForm.value.username + "&email=" + this.registerForm.value.email + "&password=" + this.registerForm.value.password;
         console.log(data);
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        this.http.post('http://localhost/MetHotels/php/register_service.php', data, { headers: headers })
+        var data;
+        this.http.post('http://localhost/MetHotels/php/register_service.php', postdata, { headers: headers })
             .map(function (res) { return res; })
-            .subscribe(function (data) { return _this.postResponse = data; }, function (err) {
+            .subscribe(function (x) { return data = x; }, function (err) {
             var obj = JSON.parse(err._body);
             console.log(obj);
             document.getElementById("alert").innerHTML = obj;
         }, function () {
-            console.log(_this.postResponse);
-            var obj = JSON.parse(_this.postResponse._body);
+            console.log(data);
+            var obj = JSON.parse(data._body);
             localStorage.setItem('token', obj.username);
             _this.router.parent.navigate(['./Home']);
         });

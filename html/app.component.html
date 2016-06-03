@@ -13,8 +13,7 @@
             <ul class="nav navbar-nav">
                 <li [class.active]="router.isRouteActive(router.generate(['Home']))"><a [routerLink]="['Home']">Home</a></li>
                 <li [class.active]="router.isRouteActive(router.generate(['Rezervacija']))"><a [routerLink]="['Rezervacija']">Rezervišite sobu</a></li>
-                <li [class.active]="router.isRouteActive(router.generate(['Dashboard']))"><a [routerLink]="['Dashboard']">Dashboard</a></li>
-                <li [class.active]="router.isRouteActive(router.generate(['Heroes']))"><a [routerLink]="['Heroes']">Heroes</a></li>
+                <li [class.active]="router.isRouteActive(router.generate(['AddRoom']))"><a [routerLink]="['AddRoom']">Dodajte sobu</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!isAuth" [class.active]="router.isRouteActive(router.generate(['Register']))" ng-class="getClass('/register')"><a [routerLink]="['Register']">Registracija</a></li>

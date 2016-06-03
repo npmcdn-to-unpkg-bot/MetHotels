@@ -9,38 +9,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var http_1 = require('@angular/http');
 require('rxjs/Rx');
-var RezervacijaComponent = (function () {
-    function RezervacijaComponent(http, router) {
+var AddRoomComponent = (function () {
+    function AddRoomComponent(builder, http, router) {
         this.http = http;
         this.router = router;
+        this.addRoomForm = builder.group({
+            name: [""],
+            beds: [""],
+            size: [""]
+        });
+        this.isAuth = localStorage.getItem('token') != null;
     }
-    RezervacijaComponent.prototype.ngOnInit = function () {
-        var _this = this;
+    AddRoomComponent.prototype.onAdd = function () {
+        var postdata = "name=" + this.addRoomForm.value.name + "&beds=" + this.addRoomForm.value.beds + "&size=" + this.addRoomForm.value.size;
+        console.log(postdata);
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var data;
-        this.http.post('http://localhost/MetHotels/php/get_rooms_service.php', "", { headers: headers })
+        this.http.post('http://localhost/MetHotels/php/add_room_service.php', postdata, { headers: headers })
             .map(function (res) { return res; })
             .subscribe(function (x) { return data = x; }, function (err) {
             var obj = JSON.parse(err._body);
             console.log(obj);
-            document.getElementById("alert").innerHTML = obj;
+            document.getElementById("alert").innerHTML = "Error " + err._code + "<br>" + obj;
         }, function () {
             console.log(data);
-            _this.rooms = JSON.parse(data._body);
+            var obj = JSON.parse(data._body);
+            document.getElementById("alert").innerHTML = "Soba dodata:<br>[" + obj.id + "] " + obj.name + " (" + obj.rooms + ", " + obj.size + " m2)";
         });
     };
-    RezervacijaComponent = __decorate([
+    AddRoomComponent = __decorate([
         core_1.Component({
-            selector: 'my-rezervacija',
-            templateUrl: 'html/rezervacija.component.html'
+            selector: 'my-add-room',
+            templateUrl: 'html/add_room.component.html',
+            directives: [common_1.FORM_DIRECTIVES],
+            viewBindings: [common_1.FORM_BINDINGS]
         }), 
-        __metadata('design:paramtypes', [http_1.Http, router_deprecated_1.Router])
-    ], RezervacijaComponent);
-    return RezervacijaComponent;
+        __metadata('design:paramtypes', [common_1.FormBuilder, http_1.Http, router_deprecated_1.Router])
+    ], AddRoomComponent);
+    return AddRoomComponent;
 }());
-exports.RezervacijaComponent = RezervacijaComponent;
-//# sourceMappingURL=rezervacija.component.js.map
+exports.AddRoomComponent = AddRoomComponent;
+//# sourceMappingURL=add_room.component.js.map

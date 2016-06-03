@@ -5,47 +5,46 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'my-login',
-    templateUrl: 'html/login.component.html',
+    selector: 'my-add-room',
+    templateUrl: 'html/add_room.component.html',
     directives: [FORM_DIRECTIVES],
     viewBindings: [FORM_BINDINGS]
 })
-export class LoginComponent {
-    loginForm: ControlGroup;
+export class AddRoomComponent {
+    addRoomForm: ControlGroup;
     http: Http;
     router: Router;
+    isAuth: boolean;
 
     constructor(builder: FormBuilder, http: Http, router: Router) {
         this.http = http;
         this.router = router;
-        this.loginForm = builder.group({
-            username: [""],
-            password: [""]
+        this.addRoomForm = builder.group({
+            name: [""],
+            beds: [""],
+            size: [""]
         });
-
-        if(localStorage.getItem('token') != null){
-            this.router.parent.navigate(['./Home']);
-        }
+        this.isAuth = localStorage.getItem('token') != null;
     }
 
-    onLogin(): void {
-        var postdata = "username=" + this.loginForm.value.username + "&password=" + this.loginForm.value.password;
+    onAdd(): void {
+        var postdata = "name=" + this.addRoomForm.value.name + "&beds=" + this.addRoomForm.value.beds + "&size=" + this.addRoomForm.value.size;
+        console.log(postdata);
         var headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var data;
-        this.http.post('http://localhost/MetHotels/php/login_service.php', postdata, { headers: headers })
+        this.http.post('http://localhost/MetHotels/php/add_room_service.php', postdata, { headers: headers })
             .map(res => res)
             .subscribe(x => data = x,
                 err => {
                     var obj = JSON.parse(err._body);
                     console.log(obj);
-                    document.getElementById("alert").innerHTML = obj;
+                    document.getElementById("alert").innerHTML = "Error " + err._code + "<br>" + obj;
                 },
                 () => {
                     console.log(data);
                     var obj = JSON.parse(data._body);
-                    localStorage.setItem('token', obj.username);
-                    this.router.parent.navigate(['./Home']);
+                    document.getElementById("alert").innerHTML = "Soba dodata:<br>[" + obj.id + "] " + obj.name + " (" + obj.beds + ", " + obj.size + " m2)";
                 }
             );
     }
